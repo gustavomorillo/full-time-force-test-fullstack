@@ -1,0 +1,24 @@
+name: Initialize workspace
+author: Full time force test
+description: Initializes a workspace, setting global variables and installing dependencies to run a workflow
+
+inputs:
+  aws_access_key_id:
+    required: true
+    type: string
+  aws_secret_access_key:
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+
+  steps:
+    - shell: bash
+      run: |
+        # Install Chalk to colorize logs
+        npm install --global chalk-cli
+
+        echo "AWS_REGION=us-east-1" >> $GITHUB_ENV
+        echo "AWS_ACCESS_KEY_ID=${{ inputs.aws_access_key_id }}" >> $GITHUB_ENV
+        echo "AWS_SECRET_ACCESS_KEY=${{ inputs.aws_secret_access_key }}" >> $GITHUB_ENV

@@ -1,0 +1,23 @@
+name: Prepare Terraform
+description: Prepares the workspace to execute Terraform commands
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v2
+
+    - shell: bash
+      run: |
+        chalk blue bold "Preparing Terraform workspace"
+
+        cd ./terraform
+
+        # Initialize Terraform workspace
+        export TF_VAR_aws_region=us-east-1
+        export TF_VAR_app_name_node=${{ env.APPLICATION_NAME }}
+        export TF_VAR_description_app=${{ env.APPLICATION_NAME }}
+        export TF_VAR_elastic_beanstalk_tags='{"Name" = "${{ env.APPLICATION_NAME }}" }'
+        terraform init 
+        #
