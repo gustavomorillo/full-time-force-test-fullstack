@@ -1,0 +1,2 @@
+# Auto-renew let's encrypt SSL certificates (check every hour)
+0     *     *     *     *      sudo certbot renew

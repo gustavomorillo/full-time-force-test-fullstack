@@ -1,0 +1,1 @@
+GIT_REPO_URL = "https://api.github.com/repos/gustavomorillo/full-time-force-test-fullstack"
